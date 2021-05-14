@@ -14,16 +14,14 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(express.static("public"));
+console.log(`should connect to ${process.env.MONGODB_URI}`);
 
-mongoose.connect(
-  process.env.MONGODB_URI || 'mongodb://localhost/budget',
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: false
-  }
-);
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/budget", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+  useFindAndModify: false,
+});
 
 // routes
 app.use(require("./routes/api.js"));
